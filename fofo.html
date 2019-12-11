@@ -1,0 +1,999 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+
+    <style>
+
+    /* 메뉴바css */
+
+a{
+
+    color: black;
+
+}
+
+.total {
+
+    width: 1920px;
+
+    height: 200px;
+
+    background-color: rgba(0, 0, 0, 0.589);
+
+    padding-top:5px;
+
+}
+
+.total ul {
+
+    list-style: none;
+
+   
+
+}
+
+.total ul li {
+
+    
+
+}
+
+.total ul li a{
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    font-size: 20px;
+
+}
+
+.total li ul{
+
+    display: none;
+
+    position: absolute;
+
+    z-index: 200;
+
+}
+
+.total li:hover ul{
+
+    display: block;
+
+    background-color: rgba(0, 0, 0, 0.589);
+
+}
+
+.total li:hover {
+
+    background-color: white;
+
+}
+
+
+ /* 테이블css */
+
+ .w450h300 {
+
+    width: 200px; 
+
+    height: 200px;
+
+ }
+
+ .menupan {
+
+    background-color: rgba(128, 128, 128, 0.342);
+
+}
+
+
+    </style>
+
+</head>
+
+<script type="text/javascript">
+
+
+
+
+    //Configure below to change URL path to the snow image
+
+    var snowsrc="http://www.paris.co.kr/images/@temp/snow2.png"
+
+  
+
+    // Configure below to change number of snow to render
+
+    var no = 10;
+
+  
+
+    // Configure whether snow should disappear after x seconds (0=never):
+
+    var hidesnowtime = 0;
+
+  
+
+    // Configure how much snow should drop down before fading ("windowheight" or "pageheight")
+
+    var snowdistance = "pageheight";
+
+  
+
+  
+
+  
+
+  
+
+    var ie4up = (document.all) ? 1 : 0;
+
+    var ns6up = (document.getElementById&&!document.all) ? 1 : 0;
+
+  
+
+  
+
+  
+
+  
+
+  function iecompattest(){
+
+  return (document.compatMode && document.compatMode!="BackCompat")? document.documentElement : document.body
+
+  
+
+  }
+
+  
+
+  
+
+  
+
+  
+
+    var dx, xp, yp;    // coordinate and position variables
+
+    var am, stx, sty;  // amplitude and step variables
+
+    var i, doc_width = 800, doc_height = 600; 
+
+  
+
+    
+
+  
+
+    if (ns6up) {
+
+      doc_width = self.innerWidth;
+
+      doc_height = self.innerHeight;
+
+    } else if (ie4up) {
+
+  
+
+      doc_width = iecompattest().clientWidth;
+
+      doc_height = iecompattest().clientHeight;
+
+  
+
+    }
+
+  
+
+  
+
+  
+
+  
+
+    dx = new Array();
+
+    xp = new Array();
+
+    yp = new Array();
+
+    am = new Array();
+
+    stx = new Array();
+
+    sty = new Array();
+
+    snowsrc=(snowsrc.indexOf("dynamicdrive.com")!=-1)? "snow.gif" : snowsrc
+
+  
+
+    for (i = 0; i < no; ++ i) {  
+
+  
+
+      dx[i] = 0;                        // set coordinate variables
+
+      xp[i] = Math.random()*(doc_width-50);  // set position variables
+
+      yp[i] = Math.random()*doc_height;
+
+      am[i] = Math.random()*20;         // set amplitude variables
+
+      stx[i] = 0.02 + Math.random()/10; // set step variables
+
+      sty[i] = 0.7 + Math.random();     // set step variables
+
+  
+
+  if (ie4up||ns6up) {
+
+        if (i == 0) {
+
+          document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><a href=\"http://dynamicdrive.com\"><img src='"+snowsrc+"' border=\"0\"><\/a><\/div>");
+
+  
+
+        } else {
+
+  
+
+          document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><img src='"+snowsrc+"' border=\"0\"><\/div>");
+
+  
+
+        }
+
+  
+
+      }
+
+  
+
+    }
+
+  
+
+  
+
+  
+
+  
+
+    function snowIE_NS6() {  // IE and NS6 main animation function
+
+      doc_width = ns6up?window.innerWidth-10 : iecompattest().clientWidth-10;
+
+  
+
+  doc_height=(window.innerHeight && snowdistance=="windowheight")? window.innerHeight : (ie4up && snowdistance=="windowheight")?  iecompattest().clientHeight : (ie4up && !window.opera && snowdistance=="pageheight")? iecompattest().scrollHeight : iecompattest().offsetHeight;
+
+  
+
+      for (i = 0; i < no; ++ i) {  // iterate for every dot
+
+  
+
+        yp[i] += sty[i];
+
+  
+
+        if (yp[i] > doc_height-50) {
+
+  
+
+          xp[i] = Math.random()*(doc_width-am[i]-30);
+
+          yp[i] = 0;
+
+          stx[i] = 0.02 + Math.random()/10;
+
+          sty[i] = 0.7 + Math.random();
+
+        }
+
+  
+
+        dx[i] += stx[i];
+
+        document.getElementById("dot"+i).style.top=yp[i]+"px";
+
+        document.getElementById("dot"+i).style.left=xp[i] + am[i]*Math.sin(dx[i])+"px";  
+
+      }
+
+      snowtimer=setTimeout("snowIE_NS6()", 10);
+
+    }
+
+  
+
+  
+
+  function hidesnow(){
+
+  if (window.snowtimer) clearTimeout(snowtimer)
+
+  for (i=0; i<no; i++) document.getElementById("dot"+i).style.visibility="hidden"
+
+  
+
+  }
+
+  
+
+  
+
+  if (ie4up||ns6up){
+
+      snowIE_NS6();
+
+  if (hidesnowtime>0)
+
+  setTimeout("hidesnow()", hidesnowtime*1000)
+
+  }
+
+  
+
+  
+
+  </script>
+
+<body>
+
+    <!-- 눈내리게 -->
+
+    
+
+
+    <!-- 메뉴바 -->
+
+    <div  class="total">
+
+            <ul>
+
+                <li>
+
+                    <a href="#cgimg" >D-DAY COUNTER</a>
+
+                   
+
+                </li>
+
+            </ul>
+
+            <ul>
+
+                <li><a href="#table">INTRODUCE</a>
+
+            
+
+                </li>
+
+            </ul>
+
+        
+
+            <ul>
+
+                <li>
+
+                    <a href="#imgcg" >BEST SPOT</a>
+
+                   
+
+                </li>
+
+            </ul>
+
+            <ul>
+
+                <li>
+
+                    <a href="#contact" >CONTACT</a>
+
+                  
+
+                    
+
+                </li>
+
+            </ul>
+
+    </div>
+
+
+    <div align="center">
+
+    
+
+            <div align="center" style="margin-top:100px;">
+
+                <div style="background-image: url(./fofo/screen.jpg); width: 470px; height: 340px;">
+
+                <img style="width:460px; height:245px; margin-top: 10px;" id="cgimg" src="./fofo/noeul.jpg" alt="birthday">
+
+                </div>
+
+                <h1 id="ctext">생</h1>
+
+            </div>
+
+          
+
+    <!-- 체인지이미지엔텍스트 -->
+
+            <script>
+
+            let imglist = ["./fofo/noeul.jpg","./fofo/yuchae.jpg","./fofo/cat.jpg","./fofo/sunjeong.jpg","./fofo/sunjeong4.jpg"];
+
+            let textlist = ["권민정","엄지연","김가형","박지연","이태경"];
+
+            let num=0;
+
+            let num2=0;
+
+        
+
+            function next() {
+
+                console.log(num);
+
+                let changeimage = document.getElementById("cgimg");
+
+                
+
+                changeimage.src=imglist[num];
+
+                num++;
+
+                if(num>=imglist.length){
+
+                    num=0;
+
+                }
+
+                console.log(num);
+
+            }
+
+
+            function changetext() {
+
+                let abc=document.getElementById("ctext");
+
+                
+
+                abc.innerHTML= textlist[num2];
+
+                num2++;
+
+                console.log(abc.innerHTML);
+
+                if(num2>=textlist.length){
+
+                    num2=0;
+
+                }
+
+            }
+
+        
+
+            setInterval(next,1000);
+
+            setInterval(changetext,1000);
+
+            </script>
+
+
+ 
+
+
+
+  <!-- 시간디데이 -->
+
+    <div align="center">
+
+    <h1 class="content"></h1>
+
+    </div>
+
+    <script>
+
+        function counter(){
+
+            var dday = new Date("Dec 20,2019,24:00:00").getTime(); //디데이
+
+            setInterval(function(){
+
+                var now = new Date(); //현재 날짜 가져오기
+
+                var distance = dday - now;
+
+                var d = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+                var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+                var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+                var s = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if(s < 10){
+
+                    s = '0'+s;
+
+                }
+
+                const ok=document.getElementsByClassName("content")[0];
+
+                ok.innerHTML=`D-Day:${d}일:${h}:${m}:${s}시간`;
+
+            }, 1000);
+
+        }
+
+        counter();
+
+    </script>
+
+
+
+      <!-- 편지 -->
+
+    <div align="center" style="margin-bottom: 300px;">
+
+    <p id="letter"></p>
+
+    </div>
+
+    <script>
+
+        let a=document.getElementById("letter");
+
+        a.innerHTML="<div>제주도 여행 디데이~</div>";
+
+
+        function loveletter() {
+
+           a.innerHTML="<div>여행을 떠나요~</div>"; 
+
+        }
+
+
+        window.addEventListener("keydown",loveletter);
+
+    </script>
+
+
+
+<div  class="total">
+
+    <h1 id="hello" style="color: white; padding-top: 50px; padding-right: 70px;"></h2>
+
+</div>
+
+    <script>
+
+        let tt =["무조건 떠나라!","떠나지 말아야 할 이유가","더 많아지기 전에"," "];
+
+        let num3 =0;
+
+
+        function textchange() {
+
+            let ttt=document.getElementById("hello");
+
+            ttt.innerHTML= tt[num3];
+
+            num3++;
+
+            if(num3>=tt.length) {
+
+                num3=0;
+
+            }
+
+            console.log("num3의값은"+num3+"입니다");
+
+        
+
+        }
+
+
+        setInterval(textchange,1000);
+
+    </script>
+
+
+   <!-- 테이블 사진나열-->
+
+   <div align="center">
+
+    <table id="table" style="margin-top:700px; margin-bottom: 500px;">
+
+    <tr>
+
+        <td>
+
+            <img src="./fofo/camelialogo.jpg" alt="cafe" class="w450h300" class="a">
+
+        </td>
+
+        <td>
+
+            <img src="./fofo/udologo.png" alt="cafe" class="w450h300" class="b">
+
+        </td>
+
+        <td>
+
+            <img src="./fofo/sunjeonglogo.jpg" alt="cafe" class="w450h300" class="c">
+
+        </td>
+
+        <td>
+
+            <img src="./fofo/hanlalogo.png" alt="cafe" class="w450h300" class="d">
+
+        </td>
+
+    </tr>
+
+    <tr style="text-align: center;">
+
+        <td class="menupan">
+
+            <p>BEST1</p>
+
+        </td>
+
+        <td class="menupan">
+
+            <p>BEST2</p>
+
+        </td>
+
+        <td class="menupan">
+
+            <p>BEST3</p>
+
+        </td>
+
+        <td class="menupan">
+
+            <p>BEST4</p>
+
+        </td>
+
+    </tr>
+
+    </table>
+
+    </div>
+
+    <script>
+
+        let aa =document.querySelector(".a");
+
+        let bb =document.querySelector(".b");
+
+        let cc =document.querySelector(".c");
+
+        let dd =document.querySelector(".d");
+
+
+        function ac() {
+
+            aa.src="./birthday/cake4.jpg";
+
+        }
+
+
+        function bc() {
+
+            bb.src="./birthday/cake3.jpg";
+
+        }
+
+
+        function ccc() {
+
+            cc.src="./birthday/cake2.jpg";
+
+        }
+
+
+        function dc() {
+
+            dd.src="./birthday/cake1.jpg";
+
+        }
+
+        
+
+        a.addEventListener("mouseenter",ac);
+
+        b.addEventListener("mouseenter",bc);
+
+        c.addEventListener("mouseenter",ccc);
+
+        d.addEventListener("mouseenter",dc);
+
+    </script>
+
+
+<!-- 이미지 마우스에 가져다 대었을 시 뒤바뀌는거 -->
+
+<div style="float: left;"> 
+
+<img id="imgcg" class="imgcg" src="./fofo/camelialogo.jpg" alt="cake" style="margin-top: 100px; width:400px; height: 400px;">
+
+<p class="textcg">고고</p>
+
+</div>
+
+
+<script>
+
+    let icg=document.querySelector(".imgcg");
+
+    let tcg=document.querySelector(".textcg");
+
+    tcg.innerHTML="<div>카멜리아힐</div>";
+
+
+    function c1() {
+
+        icg.src="./fofo/camelia2.jpg";
+
+        tcg.innerHTML="<div>여름엔 수국이피고</div>";
+
+    }
+
+
+    function c2() {
+
+        icg.src="./fofo/camelia3.jpg";
+
+        tcg.innerHTML="<div>겨울엔 동백꽃이피고<div>";
+
+    }
+
+
+    icg.addEventListener("mouseenter",c1);
+
+    icg.addEventListener("mouseleave",c2);
+
+</script>
+
+
+<div style="float: left;"> 
+
+<img id="imgcg2" class="imgcg2" src="./fofo/udologo.png" alt="cake" style="margin-top: 100px; width:400px; height: 400px;">
+
+<p class="textcg2">고고</p>
+
+</div>
+
+
+<script>
+
+    let icg2=document.querySelector(".imgcg2");
+
+    let tcg2=document.querySelector(".textcg2");
+
+    tcg2.innerHTML="<div>우도 검멀레해변</div>";
+
+
+    function c1() {
+
+        icg2.src="./fofo/udo.jpg";
+
+        tcg2.innerHTML="<div>보트체험 액티비티</div>";
+
+    }
+
+
+    function c2() {
+
+        icg2.src="./fofo/udo2.jpg";
+
+        tcg2.innerHTML="<div>우도엔 땅콩아이스크림이쥐<div>";
+
+    }
+
+
+    icg2.addEventListener("mouseenter",c1);
+
+    icg2.addEventListener("mouseleave",c2);
+
+</script>
+
+
+<div style="float: left;"> 
+
+    <img id="imgcg3" class="imgcg3" src="./fofo/sunjeonglogo.jpg" alt="cake" style="margin-top: 100px; width:400px; height: 400px;">
+
+    <p class="textcg3">고고</p>
+
+    </div>
+
+    
+
+    <script>
+
+        let icg3=document.querySelector(".imgcg3");
+
+        let tcg3=document.querySelector(".textcg3");
+
+        tcg3.innerHTML="<div>순정문어 맛집</div>";
+
+    
+
+        function c1() {
+
+            icg3.src="./fofo/sunjeong3.jpg";
+
+            tcg3.innerHTML="<div>비행기가 머리위에 바로!</div>";
+
+        }
+
+    
+
+        function c2() {
+
+            icg3.src="./fofo/sunjeong2.jpg";
+
+            tcg3.innerHTML="<div>바다를 바라보며 해물라면때리기<div>";
+
+        }
+
+    
+
+        icg3.addEventListener("mouseenter",c1);
+
+        icg3.addEventListener("mouseleave",c2);
+
+    </script>
+
+
+<div align="center">
+
+    <div style="float: left;"> 
+
+        <img id="imgcg4" class="imgcg4" src="./fofo/hanlalogo.png" alt="cake" style="margin-top: 100px; width:400px; height: 400px;">
+
+        <p class="textcg4">고고</p>
+
+    </div>
+
+</div>
+
+    <script>
+
+        let icg4=document.querySelector(".imgcg4");
+
+        let tcg4=document.querySelector(".textcg4");
+
+        tcg4.innerHTML="<div>한라산은 겨울에꼭</div>";
+
+    
+
+        function c1() {
+
+            icg4.src="./fofo/hanla.jpg";
+
+            tcg4.innerHTML="<div>여기가 겨울왕국</div>";
+
+        }
+
+    
+
+        function c2() {
+
+            icg4.src="./fofo/hanla2.jpg";
+
+            tcg4.innerHTML="<div>오르골안에 들어온듯한 풍경<div>";
+
+        }
+
+    
+
+        icg4.addEventListener("mouseenter",c1);
+
+        icg4.addEventListener("mouseleave",c2);
+
+    </script>
+
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+
+
+    <!-- CONTACT부분 -->
+
+    <div id="contact">
+
+    <p>제주도 꿀팁을 원하시면</p>
+
+    <p>redthink0259@naver.com으로 문의주세요!</p>
+
+    </div>
+
+
+
+</body>
+
+</html>
