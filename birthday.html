@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div align="center">
+    
+            <div align="center">
+                <img style="width:300px; height:300px;" id="cgimg" src="./birthday/cake1.jpg" alt="birthday">
+               
+                <h1 id="ctext">생</h1>
+            </div>
+          
+    <!-- 체인지이미지엔텍스트 -->
+            <script>
+            let imglist = ["./birthday/cake1.jpg","./birthday/cake2.jpg","./birthday/cake3.jpg","./birthday/cake4.jpg","./birthday/cake5.jpg"];
+            let textlist = ["생","일","축","하","해"];
+            let num=0;
+            let num2=0;
+        
+            function next() {
+                console.log(num);
+                let changeimage = document.getElementById("cgimg");
+                
+                changeimage.src=imglist[num];
+                num++;
+                if(num>=imglist.length){
+                    num=0;
+                }
+                console.log(num);
+            }
+
+            function changetext() {
+                let abc=document.getElementById("ctext");
+                
+                abc.innerHTML= textlist[num2];
+                num2++;
+                console.log(abc.innerHTML);
+                if(num2>=textlist.length){
+                    num2=0;
+                }
+            }
+        
+            setInterval(next,1000);
+            setInterval(changetext,1000);
+            </script>
+
+ 
+
+
+  <!-- 시간디데이 -->
+    <div align="center">
+    <h1 class="content"></h1>
+    </div>
+    <script>
+        function counter(){
+            var dday = new Date("Dec 8,2019,24:00:00").getTime(); //디데이
+            setInterval(function(){
+                var now = new Date(); //현재 날짜 가져오기
+                var distance = dday - now;
+                var d = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var s = Math.floor((distance % (1000 * 60)) / 1000);
+                if(s < 10){
+                    s = '0'+s;
+                }
+                const ok=document.getElementsByClassName("content")[0];
+                ok.innerHTML=`D-Day:${d}일:${h}:${m}:${s}시간`;
+            }, 1000);
+        }
+        counter();
+    </script>
+
+
+      <!-- 편지 -->
+    <div align="center">
+    <p id="letter"></p>
+    </div>
+    <script>
+        let a=document.getElementById("letter");
+        a.innerHTML="<div>키보드를누르면편지가시작되지롱~!</div>";
+
+        function loveletter() {
+           a.innerHTML="<div>언니 저 민정이에요 !</div><br><div>언니의 27번째 생일을 축하해요! 짜란~</div><br><div>언니를 만난건 저에게 축복이자 행운이에요</div><br><div>앞으로도 살아가면서 우리 좋은 추억 만들어요</div><br><div>언니 사랑합니다♥</div>"; 
+        }
+
+        window.addEventListener("keydown",loveletter);
+    </script>
+    </div>
+
+</body>
+</html>

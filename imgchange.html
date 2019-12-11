@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+        <div>
+            <button onclick="before()">이전</button>
+            <img id="cgimg" src="./img/ccong.jpg" alt="ccong">
+            <button onclick="next()">다음</button>
+        </div>
+        <script>
+            let imglist = ["./img/cong.jpg","./img/ccong.jpg","./img/jan.jpg","./img/jan2.jpg","./img/jan3.jpg"];
+            let num=0;
+            function next(){
+                let changeimage = document.getElementById("cgimg");
+                num++;
+                changeimage.src= imglist[num];
+                if(num>=imglist.length){
+                    num=0;
+                }
+            }
+            function before(){
+                let changeimage2 = document.getElementById("cgimg");
+                num--;
+                changeimage2.src= imglist[num];
+                if(num<0){
+                    num=imglist.length-1;
+                }
+            }
+        </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <img id="cgimg" src="./christmas/1.jpg" alt="christmas">
+    </div>
+
+    <script>
+    let imglist = ["./christmas/1.jpg","./christmas/2.jpg","./christmas/3.jpg","./christmas/4.jpg","./christmas/5.jpg"];
+    let num=-1;
+
+    function next() {
+        
+        let changeimage = document.getElementById("cgimg");
+        num++;
+        changeimage.src=imglist[num];
+        if(num>imglist.length){
+            num=0;
+        }
+    }
+
+    setInterval(next,3000);
+    </script>
+</body>
+</html>

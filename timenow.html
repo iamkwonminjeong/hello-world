@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="now"></h1>
+    <script>
+    
+    function time() {
+    const date=new Date();
+    console.log(date);
+    
+
+    const h=date.getHours();
+    const m=date.getMinutes();
+    const s=date.getSeconds();
+
+    console.log(h);
+    console.log(m);
+    console.log(s);
+
+    const timer =document.querySelector(".now");
+    timer.innerHTML =`${h}:${m}:${s}`;
+    }
+
+    setInterval(time,1000);
+    </script>
+</body>
+</html>

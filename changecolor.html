@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+    <script>
+        function changewidth() {
+            alert("브라우져 창의 크기가 바뀌었어요");
+        }
+        window.addEventListener("resize", changewidth);    
+    </script>
+     -->
+
+    <h1 class="cm"></h1>
+    <script>
+        let b =document.querySelector(".cm");
+        b.innerHTML="Click Me!!!";
+        b.style.color="red";
+
+        function cchange() {
+         if(b.style.color==="red"){
+             b.style.color="orange";
+         }
+         else if(b.style.color==="orange"){
+             b.style.color="yellow";
+             console.log("노랑");
+         }
+         else if(b.style.color==="yellow"){
+             b.style.color="green";
+             console.log("그린");
+         }
+         else if(b.style.color==="green"){
+             b.style.color="blue";
+         }
+         else if(b.style.color==="blue"){
+             b.style.color="navy";
+         }
+         else if(b.style.color==="navy"){
+             b.style.color="purple";
+         }
+         else {
+             b.style.color="red";
+         }
+        }
+
+
+        b.addEventListener("click",cchange);
+    </script> 
+
+    <img class="ci" src="./kurly/benner.jpg" alt="benner">
+
+    <script>
+        let c = document.querySelector(".ci");
+        
+
+        function ichange(){
+            if(c.src="./kurly/benner.jpg"){
+                c.src="./kurly/chiken.jpg";
+                console.log("1");
+            }
+            else if(c.src="./kurly/chiken.jpg"){
+                c.src="./kurly/event1.jpg";
+                console.log("2");
+            }
+            else if(c.src="./kurly/event1.jpg"){
+                c.src="./kurly/event2.jpg";
+                console.log("3");
+            }
+            else if(c.src="./kurly/event2.jpg"){
+                c.src="./kurly/event3.jpg";
+            }
+            else {
+                c.src="./kurly/benner.jpg";
+            }
+        }
+
+        c.addEventListener("click",ichange);
+    </script>
+        
+
+</body>
+</html>

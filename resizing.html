@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Media query</title>
+    <style>
+        @media screen and (min-width: 0px) and (max-width: 500px) {
+            span{font-size: 12px;}
+        }
+        @media screen and (min-width: 501px) and (max-width: 1080px) {
+            span{font-size: 25px;}
+        }
+        @media screen and (min-width: 1081px) {
+            span{font-size: 50px;}
+        }
+    </style>
+</head>
+<body>
+    <span>화면크기에 맞춰서 리사이징 되기</span>
+</body>
+</html>

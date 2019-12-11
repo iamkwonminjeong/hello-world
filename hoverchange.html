@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <img class="ic"src="./kurly/chiken.jpg" alt="chiken">
+    <p class="fc">얍!</p>
+    <script>
+        let a=document.querySelector(".ic");
+        let b=document.querySelector(".fc");
+        var abc=document.getElementsByClassName("fc")[0];
+        abc.innerHTML="<div>무슨음식?</div>";
+        
+
+        function changeimage1() {
+            a.src="./kurly/event1.jpg";
+            b.style.color="red";
+            abc.innerHTML="<div>모나카</div>";
+        }
+
+        function changeimage2() {
+            a.src="./kurly/event2.jpg";
+            b.style.color="black";
+            abc.innerHTML="<div>만두</div>";
+         
+        }
+
+        function insertkey() {
+            alert("스크롤했어요");
+        }
+
+        function insertkey2() {
+            alert("키보드를 눌렀어요");
+        }
+
+        function insertkey3() {
+            alert("이 텍스트가 선택되었어요");
+        }
+
+        function insertkey4() {
+            alert("이 이미지가 드레그되었어요")
+            console.log("1");
+        }
+      
+        a.addEventListener("mouseenter",changeimage1);
+        a.addEventListener("mouseleave",changeimage2);
+        
+        window.addEventListener("keydown",insertkey2);
+        window.addEventListener("scroll",insertkey);
+        window.addEventListener("select",insertkey3);
+        window.addEventListener("drag",insertkey4);
+      
+    </script>
+</body>
+</html>

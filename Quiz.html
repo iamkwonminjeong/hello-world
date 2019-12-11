@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   
+    <a href="#">구글로 이동</a>
+    <a href="#">네이버로 이동</a>
+    <a href="#">네이트로 이동</a>
+    <a href="#">다음으로 이동</a>
+    <a href="https://www.naver.com"><img src="./img/appleaid.jpg" alt=""></a>
+
+    <script>
+        let a=document.getElementsByTagName("a");
+        a[0].href="https://www.google.co.kr";
+        a[1].href="https://www.naver.com";
+        a[2].href="https://www.nate.com";
+        a[3].href="https://www.daum.net";
+
+
+    </script>
+<!-- p태그 5개를 자바스크립트를 사용하여 p태그 안에 있는 내용을
+전부 '즐거운 화요일'이라는 글자로 바꾸기 반드시 for문 사용 -->
+    <p class="a">aaa</p>
+    <p class="a">bbb</p>
+    <p class="a">ccc</p>
+    <p class="a">ddd</p>
+    <p class="a">eee</p>
+    <script>
+        
+        for(i=0;i<5;i++)
+        { 
+            var abc=document.getElementsByClassName("a")[i];
+            abc.innerHTML="<div>즐거운 화요일</div>";}
+    </script>
+
+<input type="checkbox">
+    <img id=blink src="./img/ccong.jpg" alt="ccong">
+    <script>
+        let bling=document.getElementById("blink");
+        bling.innerHTML="<input"
+    </script>
+</body>
+</html>
